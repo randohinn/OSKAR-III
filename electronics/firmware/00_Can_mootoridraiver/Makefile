@@ -21,7 +21,7 @@ AVRDUDEMCU = m328p
 FORMAT = ihex
 
 # Target file name (without extension).
-TARGET = $(shell basename $(CURDIR))
+TARGET = $(shell basename "$(CURDIR)")
 # Optimization level (can be 0, 1, 2, 3, s) 
 # (Note: 3 is not always the best optimization level. See avr-libc FAQ)
 OPT = 2
