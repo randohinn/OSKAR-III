@@ -93,7 +93,6 @@
 #define TXB2D6 0x5C
 #define TXB2D7 0x5D
 
-
 // Recieve buffer 0 control
 #define RXB0CTRL 0x60
 
@@ -118,16 +117,99 @@
 #define RXB0D6 0x6C
 #define RXB0D7 0x6D
 
-
-
-
-
+// Recieve buffer 1 control
 #define RXB1CTRL 0x70
 
+// Recieve buffer 1 ID
+#define RXB1SIDH 0x71 
+#define RXB1SIDL 0x72
+
+// Recieve buffer 1 E(xtended)ID
+#define RXB1EIDH 0x73
+#define RXB1EIDL 0x74
+
+// Recieve buffer 1 DLC (data length)
+#define RXB1DLC 0x75
+
+// Recieve buffer 1 data bytes
+#define RXB1D0 0x76
+#define RXB1D1 0x77
+#define RXB1D2 0x78
+#define RXB1D3 0x79
+#define RXB1D4 0x7A
+#define RXB1D5 0x7B
+#define RXB1D6 0x7C
+#define RXB1D7 0x7D
+
+// Recieve acceptance filter 0 ID and EID
+#define RXF0SIDH 0x00
+#define RXF0SIDL 0x01
+#define RXF0EIDH 0x02
+#define RXF0EIDL 0x03
+
+// Recieve acceptance filter 1 ID and EID
+#define RXF1SIDH 0x04
+#define RXF1SIDL 0x05
+#define RXF1EIDH 0x06
+#define RXF1EIDL 0x07
+
+// Recieve acceptance filter 2 ID and EID
+#define RXF2SIDH 0x08
+#define RXF2SIDL 0x09
+#define RXF2EIDH 0x0A
+#define RXF2EIDL 0x0B
+
+// Recieve acceptance filter 3 ID and EID
+#define RXF3SIDH 0x10
+#define RXF3SIDL 0x11
+#define RXF3EIDH 0x12
+#define RXF3EIDL 0x13
+
+// Recieve acceptance filter 4 ID and EID
+#define RXF4SIDH 0x14
+#define RXF4SIDL 0x15
+#define RXF4EIDH 0x16
+#define RXF4EIDL 0x17
+
+// Recieve acceptance filter 5 ID and EID
+#define RXF5SIDH 0x18
+#define RXF5SIDL 0x19
+#define RXF5EIDH 0x1A
+#define RXF5EIDL 0x1B
+
+// Recieve acceptance mask 0 ID and EID
+#define RXM0SIDH 0x20
+#define RXM0SIDL 0x21
+#define RXM0EIDH 0x22
+#define RXM0EIDL 0x23
+
+// RXnBF Pin control - control for RX Buffer full pins
+#define BFPCTRL 0x0C
+
+// TXnRTS Pin control - control for TX Buffer request to send pins
+#define TXRTSCTRL 0x0D
+
+// CAN status
+#define CANSTAT 0x0E
+
+// Can control
+#define CANCTRL 0x0F
+
+// Transmit error count
+#define TEC 0x1C
+
+// Reciefe error flag
+#define REC 0x1D
 
 // Error flag
 #define EFLG 0x2D
-#define TXRTSCTRL 0x0D
+
+// Bit timing configuration
+#define CNF3 0x28
+#define CNF2 0x29
+#define CNF1 0x2A
+
+
 
 // CAN Interrupt enable & interrupt flag
 #define CANINTE 0x2B
