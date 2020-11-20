@@ -201,19 +201,22 @@
 // Reciefe error flag
 #define REC 0x1D
 
-// Error flag
-#define EFLG 0x2D
-
 // Bit timing configuration
 #define CNF3 0x28
 #define CNF2 0x29
 #define CNF1 0x2A
 
-
-
 // CAN Interrupt enable & interrupt flag
 #define CANINTE 0x2B
 #define CANINTF 0x2C
+
+// Error flag
+#define EFLG 0x2D
+
+
+// Changes the operation mode by setting CANCTRL.REQOP bits
+void mcp2515_set_mode(uint8_t mode);
+
 
 
 

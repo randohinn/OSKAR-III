@@ -8,3 +8,4 @@
 
 *.pnproj
 *.pnps
+.vscode/*
