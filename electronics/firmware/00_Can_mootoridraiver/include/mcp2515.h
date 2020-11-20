@@ -7,6 +7,20 @@
 #ifndef MCP2515_H
 #define MCP2515_H
 
+/* -------------------       Helpers      ------------------- */
+
+// CANCTRL.REQOP bits to define operational modes
+#define REQOP_NORMAL 0x00
+#define REQOP_SLEEP  0x01
+#define REQOP_LOOPBACK 0x02
+#define REQOP_LISTEN 0x03
+#define REQOP_CONFIG 0x04
+#define REQOP_OFFSET 5
+#define REQOP_MASK 0xE0
+
+#define CLKEN 0x04
+
+
 /* -------------------    Instructions    ------------------- */
 
 #define RESET 0xC0
@@ -214,8 +228,15 @@
 #define EFLG 0x2D
 
 
+
+
+
 // Changes the operation mode by setting CANCTRL.REQOP bits
 void mcp2515_set_mode(uint8_t mode);
+
+//enables or disables the CKLOUT pin
+void mcp2515_enable_clkout();
+void mcp2515_disable_clkout();
 
 
 
