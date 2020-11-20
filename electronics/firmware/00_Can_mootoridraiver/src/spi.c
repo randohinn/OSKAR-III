@@ -13,3 +13,16 @@ uint8_t SPI_txrx(uint8_t data) {
     PORTB |= (1 << PINB2);
 	return(SPDR);
 }
+
+void SPI_unset_cs() {
+    PORTB &= ~(1 << PINB2);
+}
+
+void SPI_set_cs(){
+    PORTB |= (1 << PINB2);
+}
+
+void SPI_send(uint8_t data) {
+	SPDR = data;
+	while(!(SPSR & (1<<SPIF) ));
+}
