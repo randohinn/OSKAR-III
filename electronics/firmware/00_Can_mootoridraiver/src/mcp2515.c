@@ -27,4 +27,3 @@ void mcp2515_disable_clkout() {
     SPI_send(!CLKEN);
     SPI_set_cs();
 }
-}
