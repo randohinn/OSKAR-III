@@ -11,8 +11,13 @@ int main() {
 	SPI_init();
 
 	mcp2515_set_mode(REQOP_CONFIG);
-
 	
+
+	/* https://www.kvaser.com/support/calculators/bit-timing-calculator/ */
+	mcp2515_set_register(CNF1, uint8_t 0x01);
+	mcp2515_set_register(CNF2, uint8_t 0xAC);
+	mcp2515_set_register(CNF3, uint8_t 0x03);
+
 
 	mcp2515_set_mode(REQOP_NORMAL);
 	
