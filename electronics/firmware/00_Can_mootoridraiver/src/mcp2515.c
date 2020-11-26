@@ -45,3 +45,26 @@ uint8_t mcp2515_read_register(uint8_t reg) {
     return SPDR;
 }
 
+void mcp2515_load_message(uint8_t buffer, can_frame_t* frame) {
+    SPI_unset_cs();
+    SPI_send(LOAD_TX_BUFFER | buffer);
+    SPI_send((frame->SID >> 3));
+    SPI_send((frame->SID << 5));
+    SPI_send(0);
+    SPI_send(0);
+    
+    uint8_t length = frame->header.len & 0x0F;
+    if (frame->header.rtr) {
+        SPI_send((1<<RTR) | length);
+    }
+    else {
+      SPI_send(length);                      
+      for (uint8_t i = 0; i < length; ++i)
+      {
+        SPI_send(frame->data[i]);
+      }
+   }
+
+    SPI_set_cs();
+
+}
