@@ -27,3 +27,11 @@ void mcp2515_disable_clkout() {
     SPI_send(!CLKEN);
     SPI_set_cs();
 }
+
+void mcp2515_set_register(uint8_t reg, uint8_t data) {
+    SPI_unset_cs();
+    SPI_send(WRITE);
+    SPI_send(reg);
+    SPI_send(data);
+    SPI_set_cs();
+}
