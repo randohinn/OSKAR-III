@@ -7,7 +7,22 @@
 #ifndef MCP2515_H
 #define MCP2515_H
 
-/* -------------------       Helpers      ------------------- */
+/* -------------------       CAN Structures       ------------------- */
+
+typedef struct
+{
+   // SID of the frame;
+   uint16_t SID;
+   // Frame header
+   struct
+   {
+      unsigned int rtr : 1;
+      unsigned int len : 4;
+   } header;
+   // Frame data
+   uint8_t  data[8];
+} can_frame_t;
+
 
 // CANCTRL.REQOP bits to define operational modes
 #define REQOP_NORMAL 0x00
@@ -24,7 +39,6 @@
 #define TXB2ADDR 4
 #define TXB1ADDR 2
 #define TXB0ADDR 0
-
 
 
 /* -------------------    Instructions    ------------------- */
