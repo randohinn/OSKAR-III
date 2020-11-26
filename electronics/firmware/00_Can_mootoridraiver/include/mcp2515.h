@@ -20,6 +20,12 @@
 
 #define CLKEN 0x04
 
+// LOAD_TX_BUFFER offests to point to the buffers
+#define TXB2ADDR 4
+#define TXB1ADDR 2
+#define TXB0ADDR 0
+
+
 
 /* -------------------    Instructions    ------------------- */
 
