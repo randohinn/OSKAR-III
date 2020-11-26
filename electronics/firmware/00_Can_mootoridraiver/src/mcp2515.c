@@ -37,6 +37,11 @@ void mcp2515_set_register(uint8_t reg, uint8_t data) {
 }
 
 uint8_t mcp2515_read_register(uint8_t reg) {
-    
+    SPI_unset_cs();
+    SPI_send(READ);
+    SPI_send(reg);
+    SPI_send(0x00);
+    SPI_set_cs();
+    return SPDR;
 }
 
