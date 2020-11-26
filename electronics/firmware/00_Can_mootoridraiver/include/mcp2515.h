@@ -239,6 +239,6 @@ void mcp2515_enable_clkout();
 void mcp2515_disable_clkout();
 
 void mcp2515_set_register(uint8_t reg, uint8_t data);
-
+uint8_t mcp2515_read_register(uint8_t reg);
 
 #endif
