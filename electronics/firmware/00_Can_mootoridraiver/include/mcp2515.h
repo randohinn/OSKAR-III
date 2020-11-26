@@ -238,7 +238,7 @@ void mcp2515_set_mode(uint8_t mode);
 void mcp2515_enable_clkout();
 void mcp2515_disable_clkout();
 
-
+void mcp2515_set_register(uint8_t reg, uint8_t data);
 
 
 #endif
