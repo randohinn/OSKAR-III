@@ -7,6 +7,8 @@
 #ifndef MCP2515_H
 #define MCP2515_H
 
+#include <stdint.h>
+
 /* -------------------       CAN Structures       ------------------- */
 
 typedef struct
@@ -40,6 +42,21 @@ typedef struct
 #define TXB1ADDR 2
 #define TXB0ADDR 0
 
+// Things in DLC registers
+#define RTR 6
+
+
+// Interrupt stuff
+
+#define RX1IE  1
+#define RX0IE  0
+
+#define B1BFS  5
+#define B0BFS  4
+#define B1BFE  3
+#define B0BFE  2
+#define B1BFM  1
+#define B0BFM  0
 
 /* -------------------    Instructions    ------------------- */
 
@@ -261,5 +278,6 @@ void mcp2515_disable_clkout();
 void mcp2515_set_register(uint8_t reg, uint8_t data);
 uint8_t mcp2515_read_register(uint8_t reg);
 void mcp2515_load_message(uint8_t buffer, can_frame_t* frame);
+void mcp2515_request_to_send(uint8_t buffer);
 
 #endif

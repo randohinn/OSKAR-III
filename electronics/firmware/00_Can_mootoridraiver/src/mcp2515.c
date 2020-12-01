@@ -13,7 +13,7 @@ void mcp2515_set_mode(uint8_t mode) {
 void mcp2515_enable_clkout() {
     SPI_unset_cs();
     SPI_send(BIT_MODIFY);
-    SPI_SEND(CANCTRL);
+    SPI_send(CANCTRL);
     SPI_send(CLKEN);
     SPI_send(CLKEN);
     SPI_set_cs();
@@ -22,7 +22,7 @@ void mcp2515_enable_clkout() {
 void mcp2515_disable_clkout() {
     SPI_unset_cs();
     SPI_send(BIT_MODIFY);
-    SPI_SEND(CANCTRL);
+    SPI_send(CANCTRL);
     SPI_send(CLKEN);
     SPI_send(!CLKEN);
     SPI_set_cs();
@@ -67,4 +67,11 @@ void mcp2515_load_message(uint8_t buffer, can_frame_t* frame) {
 
     SPI_set_cs();
 
+}
+
+void mcp2515_request_to_send(uint8_t buffer) {
+    uint8_t address = (buffer == 0) ? 1 : buffer;
+    SPI_unset_cs();
+    SPI_send(RTS | address);
+    SPI_set_cs();
 }
