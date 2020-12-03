@@ -58,8 +58,9 @@ void mcp2515_load_message(uint8_t buffer, can_frame_t* frame) {
         SPI_send((1<<RTR) | length);
     }
     else {
-      SPI_send(length);                      
-      for (uint8_t i = 0; i < length; ++i)
+      SPI_send(length);       
+	  uint8_t i;
+      for (i=0; i < length; ++i)
       {
         SPI_send(frame->data[i]);
       }
@@ -74,4 +75,9 @@ void mcp2515_request_to_send(uint8_t buffer) {
     SPI_unset_cs();
     SPI_send(RTS | address);
     SPI_set_cs();
+}
+
+uint8_t mcp2515_verify_register(uint8_t reg, uint8_t expected) {
+	uint8_t reading = mcp2515_read_register(reg);
+	return (reading == expected);
 }

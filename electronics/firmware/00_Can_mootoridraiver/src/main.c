@@ -5,23 +5,43 @@
 */
 #include <include/spi.h>
 #include <include/mcp2515.h>
+#define F_CPU 8000000U
+#include <util/delay.h>
 
 int main() {
+	
+    uint8_t blink_debug = 0;
+    
+	DDRB |= (1 << DDB1);
 	
 	SPI_init();
 
 	mcp2515_set_mode(REQOP_CONFIG);
+    PORTB |= (1 << PINB1);
+
+    while(!(mcp2515_read_register(CANSTAT) & 0x80)){};
+	PORTB &= ~(1 << PINB1);
+
+    
+    /* https://www.kvaser.com/support/calculators/bit-timing-calculator/ */
+	uint8_t cnf1 = 0x01;
+	uint8_t cnf2 = 0xAC;
+	uint8_t cnf3 = 0x03;
+
+	mcp2515_set_register(CNF1, cnf1);
+	mcp2515_set_register(CNF2, cnf2);
+	mcp2515_set_register(CNF3, cnf3);
+	
+	if(mcp2515_verify_register(CNF1, cnf1) && mcp2515_verify_register(CNF2, cnf2) && mcp2515_verify_register(CNF3, cnf3)){
+		mcp2515_set_mode(REQOP_NORMAL);
+        while(!(mcp2515_read_register(CANSTAT) == 0x00)){};
+	} else {
+		blink_debug = 1;
+	}
+	
 	
 
-	/* https://www.kvaser.com/support/calculators/bit-timing-calculator/ */
-	mcp2515_set_register(CNF1, 0x01);
-	mcp2515_set_register(CNF2, 0xAC);
-	mcp2515_set_register(CNF3, 0x03);
-	mcp2515_set_register(CANINTE,(1 << RX1IE) | (1 << RX0IE));
-    mcp2515_set_register(BFPCTRL, (1 << B0BFE) | (1 << B0BFM));
-	mcp2515_set_mode(REQOP_NORMAL);
-
-	can_frame_t frm;
+	/*can_frame_t frm;
 
 	frm.SID = 0x140+1;
 	frm.header.rtr = 0;
@@ -36,10 +56,15 @@ int main() {
 	frm.data[0] = 0x00;
 
 	mcp2515_load_message(TXB0ADDR, &frm);
-	mcp2515_request_to_send(TXB0ADDR);
+	mcp2515_request_to_send(TXB0ADDR);*/
 	
 	while(1) {
-		// Here be dragons
+		if(blink_debug) {
+            PORTB |= (1 << PINB1);
+            _delay_ms(1000);
+            PORTB &= ~(1 << PINB1);
+            _delay_ms(1000);
+        }
 	}
 
 	return 0;

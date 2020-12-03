@@ -267,7 +267,6 @@ typedef struct
 
 
 
-
 // Changes the operation mode by setting CANCTRL.REQOP bits
 void mcp2515_set_mode(uint8_t mode);
 
@@ -279,5 +278,7 @@ void mcp2515_set_register(uint8_t reg, uint8_t data);
 uint8_t mcp2515_read_register(uint8_t reg);
 void mcp2515_load_message(uint8_t buffer, can_frame_t* frame);
 void mcp2515_request_to_send(uint8_t buffer);
+uint8_t mcp2515_verify_register(uint8_t reg, uint8_t expected);
+
 
 #endif
