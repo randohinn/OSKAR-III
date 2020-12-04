@@ -24,9 +24,9 @@ int main() {
 
     
     /* https://www.kvaser.com/support/calculators/bit-timing-calculator/ */
-	uint8_t cnf1 = 0x01;
-	uint8_t cnf2 = 0xAC;
-	uint8_t cnf3 = 0x03;
+	uint8_t cnf1 = 0x00;
+	uint8_t cnf2 = 0x91;
+	uint8_t cnf3 = 0x01;
 
 	mcp2515_set_register(CNF1, cnf1);
 	mcp2515_set_register(CNF2, cnf2);
