@@ -19,6 +19,7 @@ U 1 1 5FC9880B
 P 7950 3100
 F 0 "U3" H 8100 3550 50  0000 C CNN
 F 1 "MCP2561-E-P" H 8300 3450 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 7950 2600 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/25167A.pdf" H 7950 3100 50  0001 C CNN
 	1    7950 3100
 	1    0    0    -1  
