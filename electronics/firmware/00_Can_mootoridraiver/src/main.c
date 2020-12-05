@@ -15,7 +15,7 @@ int main() {
 	DDRB |= (1 << DDB1);
 	
 	SPI_init();
-
+SPSR |= (1<< SPI2X);
 	mcp2515_set_mode(REQOP_CONFIG);
     PORTB |= (1 << PINB1);
 
@@ -23,10 +23,10 @@ int main() {
 	PORTB &= ~(1 << PINB1);
 
     
-    /* https://www.kvaser.com/support/calculators/bit-timing-calculator/ */
+    /* https://www.kvaser.com/suport/calculators/bit-timing-calculator/ */
 	uint8_t cnf1 = 0x00;
-	uint8_t cnf2 = 0x91;
-	uint8_t cnf3 = 0x01;
+	uint8_t cnf2 = 0x90;
+	uint8_t cnf3 = 0x02;
 
 	mcp2515_set_register(CNF1, cnf1);
 	mcp2515_set_register(CNF2, cnf2);
@@ -41,22 +41,22 @@ int main() {
 	
 	
 
-	/*can_frame_t frm;
+	can_frame_t frm;
 
 	frm.SID = 0x140+1;
 	frm.header.rtr = 0;
 	frm.header.len = 8;
 	frm.data[0] = 0x30;
-	frm.data[0] = 0x00;
-	frm.data[0] = 0x00;
-	frm.data[0] = 0x00;
-	frm.data[0] = 0x00;
-	frm.data[0] = 0x00;
-	frm.data[0] = 0x00;
-	frm.data[0] = 0x00;
+	frm.data[1] = 0x00;
+	frm.data[2] = 0x00;
+	frm.data[3] = 0x00;
+	frm.data[4] = 0x00;
+	frm.data[5] = 0x00;
+	frm.data[6] = 0x00;
+	frm.data[7] = 0x00;
 
 	mcp2515_load_message(TXB0ADDR, &frm);
-	mcp2515_request_to_send(TXB0ADDR);*/
+	mcp2515_request_to_send(TXB0ADDR);
 	
 	while(1) {
 		if(blink_debug) {
@@ -64,6 +64,9 @@ int main() {
             _delay_ms(1000);
             PORTB &= ~(1 << PINB1);
             _delay_ms(1000);
+        } else {
+            PORTB |= (1 << PINB1);
+
         }
 	}
 

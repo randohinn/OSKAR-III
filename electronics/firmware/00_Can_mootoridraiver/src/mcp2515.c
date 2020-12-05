@@ -60,7 +60,7 @@ void mcp2515_load_message(uint8_t buffer, can_frame_t* frame) {
     else {
       SPI_send(length);       
 	  uint8_t i;
-      for (i=0; i < length; ++i)
+      for (i=0; i < length; i++)
       {
         SPI_send(frame->data[i]);
       }
