@@ -77,6 +77,15 @@ void mcp2515_request_to_send(uint8_t buffer) {
     SPI_set_cs();
 }
 
+void mcp2515_abort_send(uint8_t buffer) {
+    SPI_unset_cs();
+    SPI_send(BIT_MODIFY);
+    SPI_send(buffer);
+    SPI_send(0x08);
+    SPI_send(!0x08);
+    SPI_set_cs();
+}
+
 uint8_t mcp2515_verify_register(uint8_t reg, uint8_t expected) {
 	uint8_t reading = mcp2515_read_register(reg);
 	return (reading == expected);

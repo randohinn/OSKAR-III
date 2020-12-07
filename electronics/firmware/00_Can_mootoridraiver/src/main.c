@@ -8,6 +8,8 @@
 #define F_CPU 8000000U
 #include <util/delay.h>
 
+
+
 int main() {
 	
     uint8_t blink_debug = 0;
@@ -15,7 +17,7 @@ int main() {
 	DDRB |= (1 << DDB1);
 	
 	SPI_init();
-SPSR |= (1<< SPI2X);
+    SPSR |= (1<< SPI2X);
 	mcp2515_set_mode(REQOP_CONFIG);
     PORTB |= (1 << PINB1);
 
@@ -23,7 +25,7 @@ SPSR |= (1<< SPI2X);
 	PORTB &= ~(1 << PINB1);
 
     
-    /* https://www.kvaser.com/suport/calculators/bit-timing-calculator/ */
+    /* https://www.intrepidcs.com/products/free-tools/mb-time-calculator/  (16mhz, 1Mbps) */
 	uint8_t cnf1 = 0x00;
 	uint8_t cnf2 = 0x90;
 	uint8_t cnf3 = 0x02;
@@ -42,8 +44,10 @@ SPSR |= (1<< SPI2X);
 	
 
 	can_frame_t frm;
+    
+    uint8_t id = 0;
 
-	frm.SID = 0x140+1;
+	frm.SID = 0x140+id;
 	frm.header.rtr = 0;
 	frm.header.len = 8;
 	frm.data[0] = 0x30;
@@ -65,7 +69,27 @@ SPSR |= (1<< SPI2X);
             PORTB &= ~(1 << PINB1);
             _delay_ms(1000);
         } else {
-            PORTB |= (1 << PINB1);
+            uint8_t stat = mcp2515_read_register(TXB0CTRL);
+            if(stat & 0b00010000) {
+                 _delay_ms(1000);
+                mcp2515_abort_send(TXB0CTRL);
+                                 _delay_ms(1000);
+
+                if(id < 32) {
+                    id++;
+
+                } else {
+                    id = 1;
+                }
+                frm.SID = 0x140+id;
+                mcp2515_load_message(TXB0ADDR, &frm);
+                mcp2515_request_to_send(TXB0ADDR);
+            } else {
+                        PORTB |= (1 << PINB1);
+
+            }
+           
+
 
         }
 	}
