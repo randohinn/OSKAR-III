@@ -27,8 +27,8 @@ int main() {
     
     /* https://www.intrepidcs.com/products/free-tools/mb-time-calculator/  (16mhz, 1Mbps) */
 	uint8_t cnf1 = 0x00;
-	uint8_t cnf2 = 0x90;
-	uint8_t cnf3 = 0x02;
+	uint8_t cnf2 = 0x91;
+	uint8_t cnf3 = 0x01;
 
 	mcp2515_set_register(CNF1, cnf1);
 	mcp2515_set_register(CNF2, cnf2);
