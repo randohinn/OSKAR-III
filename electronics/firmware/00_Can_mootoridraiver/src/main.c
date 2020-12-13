@@ -17,8 +17,8 @@ int main() {
 	DDRB |= (1 << DDB1);
 	
 	SPI_init();
-    SPSR |= (1<< SPI2X);
-	mcp2515_set_mode(REQOP_CONFIG);
+	
+    mcp2515_set_mode(REQOP_CONFIG);
     PORTB |= (1 << PINB1);
 
     while(!(mcp2515_read_register(CANSTAT) & 0x80)){};
@@ -84,10 +84,7 @@ int main() {
                 frm.SID = 0x140+id;
                 mcp2515_load_message(TXB0ADDR, &frm);
                 mcp2515_request_to_send(TXB0ADDR);
-            } else {
-                        PORTB |= (1 << PINB1);
-
-            }
+            } 
            
 
 

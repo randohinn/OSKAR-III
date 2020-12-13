@@ -48,8 +48,8 @@ typedef struct
 
 // Interrupt stuff
 
-#define RX1IE  1
-#define RX0IE  0
+#define RX1IE  0x01
+#define RX0IE  0x02
 
 #define B1BFS  5
 #define B0BFS  4
