@@ -5,3 +5,6 @@
 *.eep
 *.elf
 *.lst
+build/
+devel/
+install/
