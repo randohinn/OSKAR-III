@@ -13,6 +13,7 @@ namespace ahhaa_oskar {
     }
 
     void Driver::update(const ros::TimerEvent& event) {
+        ROS_INFO("OSKAR III Update");
 
     }
 

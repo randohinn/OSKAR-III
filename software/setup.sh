@@ -16,3 +16,4 @@ rosdep update
 echo "ROS setup complete! Now sourcing your workspace from this folder permanently"
 source devel/setup.bash
 echo "source $(pwd)/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc

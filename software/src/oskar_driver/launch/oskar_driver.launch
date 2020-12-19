@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<launch>
+    <node ns="oskar_driver" pkg="oskar_driver" name="$(anon ahhaa_oskar_driver_node)" type="ahhaa_oskar_driver_node" output="screen" />
+</launch>

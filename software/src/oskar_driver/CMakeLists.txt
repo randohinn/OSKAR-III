@@ -15,5 +15,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(ahhaa_oskar_driver_node src/driver_node.cpp)
+add_executable(ahhaa_oskar_driver_node
+  src/driver_node.cpp
+  src/driver.cpp
+) 
+
 target_link_libraries(ahhaa_oskar_driver_node ${catkin_LIBRARIES})

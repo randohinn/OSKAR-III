@@ -13,7 +13,9 @@ namespace ahhaa_oskar {
             void update(const ros::TimerEvent& event);
 
             ros::Timer timer_;
-    }
+            ros::NodeHandle nh_;
+
+    };
 
 }
 
