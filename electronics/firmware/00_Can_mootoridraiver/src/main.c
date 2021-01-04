@@ -3,6 +3,7 @@
 	November 2020
 	Rando Hinn, SA Teaduskeskus AHHAA
 */
+#include <avr/io.h>
 #include <include/spi.h>
 #include <include/mcp2515.h>
 #define F_CPU 8000000U

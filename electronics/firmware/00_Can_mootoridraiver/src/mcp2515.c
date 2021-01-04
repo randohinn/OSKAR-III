@@ -49,7 +49,7 @@ void mcp2515_load_message(uint8_t buffer, can_frame_t* frame) {
     SPI_unset_cs();
     SPI_send(LOAD_TX_BUFFER | buffer);
     SPI_send((frame->SID >> 3));
-    SPI_send(((frame->SID &0x07) << 5));
+    SPI_send((frame->SID << 5));
     SPI_send(0);
     SPI_send(0);
     
