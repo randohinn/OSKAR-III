@@ -5,3 +5,7 @@
 *.eep
 *.elf
 *.lst
+build/
+devel/
+install/
+software/.vscode/*
